@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { Provider } from "react-redux";
+import "./App.scss"
+import ListToDo from "./Component/ListToDo";
+import NewModal from "./Component/ModalAdd";
+import store from "./Store";
+import { useState } from "react";
+
 
 function App() {
+  const [filterStatus, setFilterStatus] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Provider store={store}>
+        <NewModal filterStatus={filterStatus} setFilterStatus={setFilterStatus}></NewModal>
+        <ListToDo filterStatus={filterStatus}></ListToDo>
+      </Provider>
     </div>
   );
 }
